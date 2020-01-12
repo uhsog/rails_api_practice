@@ -17,5 +17,5 @@ WORKDIR $APP_ROOT
 COPY ./Gemfile $APP_ROOT/Gemfile
 COPY ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
-RUN bundle install --path vendor/bundle
+RUN bundle install --path ./vendor/bundle
 COPY . $APP_ROOT
