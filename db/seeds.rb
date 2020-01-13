@@ -20,5 +20,5 @@ require 'faker'
   Author.create!(
     name: Faker::Name.name,
     birth: Faker::Date.birthday(min_age: 30, max_age: 65),
-    from: %w[Japan USA Germany Canada UK'].sample)
+    from: %w[Japan USA Germany Canada UK].sample)
 end
