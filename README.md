@@ -1,24 +1,10 @@
-# README
+# Rails API お試し用アプリ
+https://github.com/uhsog/rails_api_practice/workflows/RailsTest/badge.svg
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+RailsでAPIサーバをつくって試す用のリポジトリ
 
-Things you may want to cover:
+## API Documents
+- TBD
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Links
+- [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers)
