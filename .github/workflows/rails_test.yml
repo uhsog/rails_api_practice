@@ -1,0 +1,45 @@
+name: RailsTest
+
+on:
+  push:
+    paths-ignore:
+      - README.md
+      - docs/**
+      - Dockerfile
+      - docker-compose.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgers:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD:
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    container:
+      image: ruby:2.6.5
+      env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD:
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up NodeJS and YARN
+      run: |
+          curl -sL https://deb.nodesource.com/setup_10.x | apt-key add -
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+          echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/yarn.list
+          apt-get update -qq
+          apt-get install -y nodejs yarn
+    - name: Build
+      run: |
+        bundle install --jobs 4 --retry 3
+        bin/rails yarn:install db:setup
+    - name: Run Test
+      run: |
+        bin/rails test
