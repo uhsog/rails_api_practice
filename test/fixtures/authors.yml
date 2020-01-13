@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: NameOne
+  birth: 2010-01-01
+  from: Japan
+
+two:
+  name: NameTwo
+  birth: 2000-01-01
+  from: USA
