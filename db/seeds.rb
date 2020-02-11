@@ -16,9 +16,19 @@
 
 require 'faker'
 
-(1..10).map do
+authors = (1..20).map do
   Author.create!(
     name: Faker::Name.name,
     birth: Faker::Date.birthday(min_age: 30, max_age: 65),
-    from: %w[Japan USA Germany Canada UK].sample)
+    from: %w[Japan USA Germany Canada UK].sample
+  )
+end
+
+(1..100).map do
+  Book.create!(
+    title: Faker::Book.title,
+    isbn: Faker::Number.number(digits: 13),
+    publication_on: Faker::Date.between_except(from: 10.year.ago, to: 1.year.from_now, excepted: Date.today),
+    author: authors.sample
+  )
 end
