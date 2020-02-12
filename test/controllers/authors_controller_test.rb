@@ -39,8 +39,9 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should delete destroy' do
+    author = Author.create(name: 'Test Author')
     records = Author.count
-    delete ams_author_url(authors(:one))
+    delete ams_author_url(author)
     assert_response :no_content
     assert_equal records - 1, Author.count
   end
