@@ -20,13 +20,13 @@ jobs:
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD:
-        # options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     container:
       image: ruby:2.6.5
       env:
         RAILS_ENV: test
-        DB_HOST: postgres # this is needed
+        # DB_HOST: postgres # this is needed
 
     steps:
       - uses: actions/checkout@v1
