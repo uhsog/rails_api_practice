@@ -10,8 +10,8 @@ RUN apt-get update -qq && \
     apt-get update -qq &&\
     apt-get install -y postgresql-client nodejs yarn
 
-RUN mkdir /rails_api
-ENV APP_ROOT /rails_api
+RUN mkdir /rails_api_practice
+ENV APP_ROOT /rails_api_practice
 WORKDIR $APP_ROOT
 
 COPY ./Gemfile $APP_ROOT/Gemfile
