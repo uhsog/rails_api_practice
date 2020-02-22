@@ -9,8 +9,10 @@ on:
       - docker-compose.yml
 
 jobs:
-  build:
+  container-job:
     runs-on: ubuntu-latest
+    container:
+      image: ruby:2.6.5
 
     services:
       postgres:
@@ -19,24 +21,27 @@ jobs:
           - 5432:5432
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD:
+          POSTGRES_PASSWORD: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
-    container:
-      image: ruby:2.6.5
-      env:
-        RAILS_ENV: test
-        DB_HOST: postgres # this is needed
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions/cache@v1
         with:
           path: vendor/bundle
           key: bundle-${{ hashFiles('**/Gemfile.lock') }}
-      - name: Build and run tests
+
+      - name: Bundle install & Prepare database
         run: |
           gem install bundler
           bundle install --path vendor/bundle --jobs 4 --retry 3
           bin/rails db:prepare
-          bin/rails test
+      - name: Run tests
+        run: bin/rails test
+
+    env:
+      DB_HOST: postgres # this is needed
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      RAILS_ENV: test
