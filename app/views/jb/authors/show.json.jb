@@ -1,0 +1,8 @@
+json = {
+  id: @author.id,
+  name: @author.name,
+  birth: @author.birth,
+  from: @author.from
+}
+
+json

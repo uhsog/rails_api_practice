@@ -1,0 +1,12 @@
+json = {}
+
+json[:authors] = @authors.map do |author|
+  {
+    id: author.id,
+    name: author.name,
+    birth: author.birth,
+    from: author.from
+  }
+end
+
+json
