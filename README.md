@@ -8,6 +8,7 @@ RailsでAPIサーバをつくって試す用のリポジトリ
 
 ## Links
 - [ActiveModelSerializers](https://github.com/rails-api/active_model_serializers)
+- [jb](https://github.com/amatsuda/jb)
 
 ## How to set up
 
@@ -26,6 +27,8 @@ $ docker-compose build
 ```bash
 $ docker-compose run web bundle install --path vendor/bundle
 ```
+
+### tips
 
 ```bash
 # dbとrails appを起動
