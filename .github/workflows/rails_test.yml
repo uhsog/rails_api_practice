@@ -12,7 +12,7 @@ jobs:
   container-job:
     runs-on: ubuntu-latest
     container:
-      image: ruby:2.6.5
+      image: ruby:3.1.0
 
     services:
       postgres:
@@ -34,7 +34,7 @@ jobs:
       - name: Bundle install & Prepare database
         run: |
           gem install bundler
-          bundle install --path vendor/bundle --jobs 4 --retry 3
+          bundle install
           bin/rails db:prepare
       - name: Run tests
         run: bin/rails test
