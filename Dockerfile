@@ -1,5 +1,5 @@
 # GET Ruby LTS image
-FROM ruby:2.6.5
+FROM ruby:3.1.0
 
 RUN apt-get update -qq && \
     # ソースリストにNodeJSを追加してインストール
@@ -17,5 +17,5 @@ WORKDIR $APP_ROOT
 COPY ./Gemfile $APP_ROOT/Gemfile
 COPY ./Gemfile.lock $APP_ROOT/Gemfile.lock
 
-RUN bundle install --path ./vendor/bundle
+RUN bundle install
 COPY . $APP_ROOT
